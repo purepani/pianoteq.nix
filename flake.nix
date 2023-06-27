@@ -2,14 +2,14 @@
 {
   inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-  outputs = { self, nixpkgs }@inputs: {
-
-    packages.x86_64-linux.default =
-
-      with import nixpkgs { system = "x86_64-linux"; };
+  outputs = {
+    self,
+    nixpkgs,
+  } @ inputs: {
+    packages.x86_64-linux.default = with import nixpkgs {system = "x86_64-linux";};
       stdenv.mkDerivation rec {
         pname = "pianoteq";
-        version = "7.5.4";
+        version = "8.1.1";
 
         icon = fetchurl {
           name = "pianoteq_icon_128";
@@ -21,9 +21,9 @@
         # Otherwise the file is not found in the nix store (Add it first ofc)
         # nix hash to-sri --type sha256 `sha256sum pianoteq_linux_v754.7z`
         src = requireFile {
-          name = "pianoteq_linux_v754.7z";
-          message = "Download the file from: https://www.modartt.com/download?file=pianoteq_linux_v754.7z and add it to the nix store manually: nix-store --add-fixed sha256 ./pianoteq_linux_v754.7z";
-          sha256 = "sha256-TA9CiuT21fQedlMUGz7bNNxYun5ArmRjvIxjOGqXDCs=";
+          name = "pianoteq_linux_v811.7z";
+          message = "Download the file from: https://www.modartt.com/download?file=pianoteq_linux_v811.7z and add it to the nix store manually: nix-store --add-fixed sha256 ./pianoteq_linux_v811.7z";
+          sha256 = "sha256-vWvo+ctJ0yN6XeJZZVhA3Ul9eWJWAh7Qo54w0TpOiVw=";
         };
 
         # Alternative: Downloaded manually and place in this directory
@@ -31,9 +31,9 @@
 
         desktopItems = [
           (makeDesktopItem {
-            name = "pianoteq7";
-            desktopName = "Pianoteq 7";
-            exec = "pianoteq7";
+            name = "pianoteq8";
+            desktopName = "Pianoteq 8";
+            exec = "pianoteq8";
             icon = "pianoteq_icon_128";
           })
         ];
@@ -57,14 +57,14 @@
 
         # `runHook postInstall` is mandatory otherwise postInstall won't run
         installPhase = ''
-          install -Dm 755 x86-64bit/Pianoteq\ 7 $out/bin/pianoteq7
-          install -Dm 755 x86-64bit/Pianoteq\ 7.lv2/Pianoteq_7.so \
-                          $out/lib/lv2/Pianoteq\ 7.lv2/Pianoteq_7.so
+          install -Dm 755 x86-64bit/Pianoteq\ 8 $out/bin/pianoteq8
+          install -Dm 755 x86-64bit/Pianoteq\ 8.lv2/Pianoteq_8.so \
+                          $out/lib/lv2/Pianoteq\ 8.lv2/Pianoteq_8.so
           patchelf --set-interpreter "$(< $NIX_CC/nix-support/dynamic-linker)" \
-                   --set-rpath $libPath "$out/bin/pianoteq7"
-          cd x86-64bit/Pianoteq\ 7.lv2/
+                   --set-rpath $libPath "$out/bin/pianoteq8"
+          cd x86-64bit/Pianoteq\ 8.lv2/
           for i in *.ttl; do
-              install -D "$i" "$out/lib/lv2/Pianoteq 7.lv2/$i"
+              install -D "$i" "$out/lib/lv2/Pianoteq 8.lv2/$i"
           done
           runHook postInstall
         '';
