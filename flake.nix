@@ -6,7 +6,7 @@
     self,
     nixpkgs,
   } @ inputs: {
-    packages.x86_64-linux.default = with import nixpkgs {system = "x86_64-linux";};
+    pianoteq8  = with import nixpkgs {system = "x86_64-linux";};
       stdenv.mkDerivation rec {
         pname = "pianoteq";
         version = "8.1.1";
