@@ -24,7 +24,7 @@
           name = "pianoteq_linux_v820.7z";
           message = "Download the file from: https://www.modartt.com/download?file=pianoteq_linux_v820.7z and add it to the nix store manually: nix-store --add-fixed sha256 ./pianoteq_linux_v820.7z";
           #sha256 = "sha256-vWvo+ctJ0yN6XeJZZVhA3Ul9eWJWAh7Qo54w0TpOiVw=";
-          sha256 = "sha256-oNkLipxxls73qTNo2aI/X46kHJm3xb/uceumqVJdpyw=";
+          sha256 = "sha256-ME0urUc1jwUKpg+5BdawYo9WhvMsrztYTVOrJTVxtkY=";
         };
 
         # Alternative: Downloaded manually and place in this directory
