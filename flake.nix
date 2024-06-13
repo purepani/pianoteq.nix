@@ -5,11 +5,11 @@
   outputs = {
     self,
     nixpkgs,
-  } @ inputs: {
+  } @ inputs: let 
     pianoteq8 = with import nixpkgs {system = "x86_64-linux";};
       stdenv.mkDerivation rec {
         pname = "pianoteq";
-        version = "8.2.0";
+        version = "8.3.0";
 
         icon = fetchurl {
           name = "pianoteq_icon_128";
@@ -21,10 +21,10 @@
         # Otherwise the file is not found in the nix store (Add it first ofc)
         # nix hash to-sri --type sha256 `sha256sum pianoteq_linux_v754.7z`
         src = requireFile {
-          name = "pianoteq_linux_v820.7z";
-          message = "Download the file from: https://www.modartt.com/download?file=pianoteq_linux_v820.7z and add it to the nix store manually: nix-store --add-fixed sha256 ./pianoteq_linux_v820.7z";
+          name = "pianoteq_linux_v830.7z";
+          message = "Download the file from: https://www.modartt.com/download?file=pianoteq_linux_v830.7z and add it to the nix store manually: nix-store --add-fixed sha256 ./pianoteq_linux_v830.7z";
           #sha256 = "sha256-vWvo+ctJ0yN6XeJZZVhA3Ul9eWJWAh7Qo54w0TpOiVw=";
-          sha256 = "sha256-ME0urUc1jwUKpg+5BdawYo9WhvMsrztYTVOrJTVxtkY=";
+          sha256 = "sha256-thVYmDnS/4VqRonFVCWSQiARBzDdRQC/9HkSWPGHx5w=";
         };
 
         # Alternative: Downloaded manually and place in this directory
@@ -86,5 +86,8 @@
           platforms = lib.platforms.linux;
         };
       };
+  in {
+   inherit pianoteq8;
+   	packages.x86_64-linux.default = pianoteq8;
   };
 }
