@@ -50,6 +50,7 @@
           xorg.libXext
           stdenv.cc.cc.lib
           libjack2
+	  libglvnd
           lv2
         ];
 
