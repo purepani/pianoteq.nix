@@ -3,6 +3,8 @@
 A nix flake that installs Pianoteq7 on nixos. The license key and binary are still required and
 have to be acquired manually from https://www.modartt.com/.
 
+Note that non-modern pianoteqs haven't been tested yet
+
 * Usage
 
 Right now, I am really new to NixOS and Nix so this might be an awkward way of installing a package.
